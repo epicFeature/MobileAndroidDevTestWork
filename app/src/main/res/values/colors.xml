@@ -8,6 +8,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!--custom colors-->
+    <!--highlight colors-->
+    <color name="pink_bright">#FF135B</color>
+    <color name="green_bright">#1DF81F</color>
+    <color name="lilac_bright">#7979FF</color>
+
+    <!--background colors-->
+    <color name="black_inner_background">#08080E</color>
+    <color name="blue_dark_block">#0F0F28</color>
+
+    <!--text/signs colors-->
+    <color name="white_text">#DDDDDF</color>
+    <color name="grey_text_sign">#505050</color>
+    <color name="grey_text_sign_2">#6A6A6D</color>
 
 </resources>
