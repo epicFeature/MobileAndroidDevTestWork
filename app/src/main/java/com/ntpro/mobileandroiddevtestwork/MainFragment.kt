@@ -14,6 +14,7 @@ import java.time.LocalDate
 
 class MainFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
+    private lateinit var dealTableDataAdapter: DealTableDataAdapter
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -28,14 +29,15 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val server = Server()
-        val data = mutableListOf<Server.Deal>()
-        server.subscribeToDeals { data }
-       // val dealTableDataAdapter = DealTableDataAdapter(this.requireContext(), )
+        viewModel.subScribe {
+            val dealTableDataAdapter = DealTableDataAdapter(this.requireContext(), it)
+            binding.tableView.dataAdapter = dealTableDataAdapter
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

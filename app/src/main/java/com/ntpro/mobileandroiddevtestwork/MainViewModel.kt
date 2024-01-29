@@ -1,18 +1,23 @@
 package com.ntpro.mobileandroiddevtestwork
 
-import androidx.lifecycle.MutableLiveData
+import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.ViewModel
 
-class MainViewModel: ViewModel() {
-    private val dealLiveData = MutableLiveData<MutableList<Server.Deal>?>()
+class MainViewModel : ViewModel() {
 
-    init {
-        dealLiveData.value = ArrayList()
+
+//    fun addDealPacket(deal: Server.Deal) {
+//        dealLiveData.value?.add(deal)
+//        dealLiveData.value = dealLiveData.value
+//    }
+
+    fun subScribe(callback: (List<Server.Deal>) -> Unit) {
+        Server().subscribeToDeals { callback(it) }
     }
 
-    fun addDealPacket(deal: Server.Deal) {
-        dealLiveData.value?.add(deal)
-        dealLiveData.value = dealLiveData.value
-    }
+    //flow не в main thread
+    //который принимает данные и каждый раз, когда обновляется начинает что-то делать
+    //мерджит их туда
 
+    //вывод функции вне мейн треда
 }
