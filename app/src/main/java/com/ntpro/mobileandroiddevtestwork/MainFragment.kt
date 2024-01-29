@@ -13,7 +13,6 @@ import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-    private val data = arrayOf(arrayOf("1", "2", "3", "4", "5"), arrayOf("6", "7", "8", "9", "10"))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,9 +24,36 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tableView.dataAdapter = SimpleTableDataAdapter(this.requireContext(), data) as TableDataAdapter<Any>
+        val server = Server()
+        val data = mutableListOf<Server.Deal>()
+        server.subscribeToDeals { data }
+        val dealTableDataAdapter = DealTableDataAdapter(this.requireContext(), data)
     }
 
+
+
+    /* final SortableCarTableView carTableView = (SortableCarTableView) findViewById(R.id.tableView);
+        if (carTableView != null) {
+            final CarTableDataAdapter carTableDataAdapter = new CarTableDataAdapter(this, DataFactory.createCarList(), carTableView);
+            carTableView.setDataAdapter(carTableDataAdapter);
+            carTableView.addDataClickListener(new CarClickListener());
+            carTableView.addDataLongClickListener(new CarLongClickListener());
+            carTableView.setSwipeToRefreshEnabled(true);
+            carTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
+                @Override
+                public void onRefresh(final RefreshIndicator refreshIndicator) {
+                    carTableView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            final Car randomCar = getRandomCar();
+                            carTableDataAdapter.getData().add(randomCar);
+                            carTableDataAdapter.notifyDataSetChanged();
+                            refreshIndicator.hide();
+                            Toast.makeText(MainActivity.this, "Added: " + randomCar, Toast.LENGTH_SHORT).show();
+                        }
+                    }, 3000);
+                }
+            });*/
 
     override fun onDestroyView() {
         super.onDestroyView()

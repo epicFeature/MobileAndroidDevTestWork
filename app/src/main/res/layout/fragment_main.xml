@@ -6,15 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black_inner_background"
     tools:context=".MainFragment">
 
-    <de.codecrafters.tableview.TableView
-        android:background="@drawable/block_background"
-        xmlns:table="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/tableView"
+    <com.ntpro.mobileandroiddevtestwork.SortableDealTableView
+        android:id="@+id/table_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        table:tableView_columnCount="5" />
+        />
 
 </LinearLayout>
