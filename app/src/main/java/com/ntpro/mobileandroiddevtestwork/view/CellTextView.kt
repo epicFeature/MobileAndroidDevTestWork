@@ -1,4 +1,4 @@
-package com.ntpro.mobileandroiddevtestwork
+package com.ntpro.mobileandroiddevtestwork.view
 
 import android.content.Context
 import android.util.AttributeSet
@@ -14,13 +14,9 @@ class CellTextView @JvmOverloads constructor(
         setPadding(20, 10, 20, 10)
         gravity = Gravity.CENTER
         textSize = FONT_SIZE
-
     }
-
 
     companion object {
         const val FONT_SIZE = 14F
-
-        //TODO other const
     }
 }

@@ -1,15 +1,13 @@
-package com.ntpro.mobileandroiddevtestwork
+package com.ntpro.mobileandroiddevtestwork.domain
 
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.Date
 import kotlin.random.Random
-import java.util.*
-import kotlin.jvm.internal.Intrinsics.Kotlin
 
 class Server {
     private val mainThreadHandler = Handler(Looper.getMainLooper())

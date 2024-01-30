@@ -1,4 +1,4 @@
-package com.ntpro.mobileandroiddevtestwork
+package com.ntpro.mobileandroiddevtestwork.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
