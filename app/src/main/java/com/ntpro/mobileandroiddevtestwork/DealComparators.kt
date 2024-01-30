@@ -1,9 +1,6 @@
 package com.ntpro.mobileandroiddevtestwork
 
 class DealComparators {
-    private fun dealComparators() {
-        //no instance
-    }
 
     fun getDealDateComparator():  Comparator<Server.Deal> {
         return DealDateComparator()
@@ -54,7 +51,7 @@ class DealComparators {
 
     private class DealSideComparator : Comparator<Server.Deal> {
         override fun compare(deal1: Server.Deal?, deal2: Server.Deal?): Int {
-            return deal1?.timeStamp?.compareTo(deal2?.timeStamp) ?: 0 // временно или !!
+            return deal2?.side?.let { deal1?.side?.compareTo(it) } ?: 0 // временно или !!
         }
     }
 

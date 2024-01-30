@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ntpro.mobileandroiddevtestwork.databinding.FragmentMainBinding
 import de.codecrafters.tableview.TableDataAdapter
@@ -13,7 +15,6 @@ import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter
 import java.time.LocalDate
 
 class MainFragment : Fragment() {
-    private lateinit var viewModel: MainViewModel
     private lateinit var dealTableDataAdapter: DealTableDataAdapter
 
     private var _binding: FragmentMainBinding? = null
@@ -29,8 +30,9 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.subScribe {
-            val dealTableDataAdapter = DealTableDataAdapter(this.requireContext(), it)
+
+        subScribe {
+            dealTableDataAdapter = DealTableDataAdapter(this.requireContext(), it)
             binding.tableView.dataAdapter = dealTableDataAdapter
         }
     }
@@ -40,4 +42,7 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
+    private fun subScribe(callback: (List<Server.Deal>) -> Unit) {
+        Server().subscribeToDeals { callback(it) }
+    }
 }

@@ -2,7 +2,6 @@ package com.ntpro.mobileandroiddevtestwork
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import de.codecrafters.tableview.SortableTableView
 import de.codecrafters.tableview.model.TableColumnWeightModel
@@ -10,14 +9,10 @@ import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter
 import de.codecrafters.tableview.toolkit.SortStateViewProviders
 import de.codecrafters.tableview.toolkit.TableDataRowBackgroundProviders
 
-class SortableDealTableView(context: Context) : SortableTableView<Server.Deal>(context) {
+class SortableDealTableView(context: Context, attributeSet: AttributeSet?) : SortableTableView<Server.Deal>(context, attributeSet) {
 
-    fun createSortableDealTableView(
-        context: Context,
-        attributes: AttributeSet//,
-        //@StyleRes styleAttributes: Int
-    ) {
-        val simpleTableHeaderAdapter: SimpleTableHeaderAdapter =
+    init {
+        val simpleTableHeaderAdapter =
             SimpleTableHeaderAdapter(
                 context,
                 R.string.time_header_name,
@@ -26,9 +21,8 @@ class SortableDealTableView(context: Context) : SortableTableView<Server.Deal>(c
                 R.string.amount_header_name,
                 R.string.side_header_name
             )
-        simpleTableHeaderAdapter
-            .setTextColor(R.color.table_header_text)
-        //.also { setBackgroundResource(R.color.blue_dark_block) }
+        simpleTableHeaderAdapter.setTextColor(R.color.table_header_text)
+        simpleTableHeaderAdapter.setTextSize(14)
         headerAdapter = simpleTableHeaderAdapter
 
         val rowColorEven = ContextCompat.getColor(context, R.color.table_data_row_even)
@@ -43,9 +37,9 @@ class SortableDealTableView(context: Context) : SortableTableView<Server.Deal>(c
         headerSortStateViewProvider = SortStateViewProviders.brightArrows()
 
         val tableColumnWeightModel = TableColumnWeightModel(5)
-        tableColumnWeightModel.setColumnWeight(0, 2)
-        tableColumnWeightModel.setColumnWeight(1, 3)
-        tableColumnWeightModel.setColumnWeight(2, 3)
+        tableColumnWeightModel.setColumnWeight(0, 3)
+        tableColumnWeightModel.setColumnWeight(1, 4)
+        tableColumnWeightModel.setColumnWeight(2, 2)
         tableColumnWeightModel.setColumnWeight(3, 2)
         tableColumnWeightModel.setColumnWeight(4, 2)
         columnModel = tableColumnWeightModel
@@ -55,7 +49,7 @@ class SortableDealTableView(context: Context) : SortableTableView<Server.Deal>(c
         setColumnComparator(1, dealComparators.getDealInstrumentComparator())
         setColumnComparator(2, dealComparators.getDealPriceComparator())
         setColumnComparator(3, dealComparators.getDealAmountComparator())
-        setColumnComparator(3, dealComparators.getDealSideComparator())
+        setColumnComparator(4, dealComparators.getDealSideComparator())
 
     }
 }

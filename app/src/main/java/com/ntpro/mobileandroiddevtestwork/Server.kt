@@ -2,12 +2,14 @@ package com.ntpro.mobileandroiddevtestwork
 
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 import java.util.*
+import kotlin.jvm.internal.Intrinsics.Kotlin
 
 class Server {
     private val mainThreadHandler = Handler(Looper.getMainLooper())
@@ -32,13 +34,11 @@ class Server {
 
     fun subscribeToDeals(callback: (List<Deal>) -> Unit) {
         val currentTimeStamp = Date()
-
         processScope.launch {
             var deals = mutableListOf<Deal>()
             val dealsCount = (1_000_000L..1_001_000L).random()
             val dealsCountInPacket = 1_000
             var j = 0
-
             for (i in 0..dealsCount) {
                 val deal = Deal(
                     id = i,
