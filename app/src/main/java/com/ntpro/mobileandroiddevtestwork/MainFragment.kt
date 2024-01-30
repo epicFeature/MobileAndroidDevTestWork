@@ -15,7 +15,12 @@ import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter
 import java.time.LocalDate
 
 class MainFragment : Fragment() {
-    private lateinit var dealTableDataAdapter: DealTableDataAdapter
+    private val dealTableDataAdapter: DealTableDataAdapter by lazy {
+        DealTableDataAdapter(
+            requireContext(),
+            arrayListOf()
+        )
+    }
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -30,10 +35,12 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.tableView.dataAdapter = dealTableDataAdapter
 
         subScribe {
-            dealTableDataAdapter = DealTableDataAdapter(this.requireContext(), it)
-            binding.tableView.dataAdapter = dealTableDataAdapter
+//            dealTableDataAdapter = DealTableDataAdapter(this.requireContext(), it)
+            dealTableDataAdapter.data.addAll(it)
+            dealTableDataAdapter.notifyDataSetChanged()
         }
     }
 

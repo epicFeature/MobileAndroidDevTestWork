@@ -15,7 +15,7 @@ class DealTableDataAdapter(
     override fun getCellView(rowIndex: Int, columnIndex: Int, parentView: ViewGroup?): View {
         val deal = getRowData(rowIndex)
         return when (columnIndex) {
-            0 -> renderDate(deal)
+            0 -> renderDate(deal) //TODO перенести цифры в константы
             1 -> renderInstrumentName(deal)
             2 -> renderPrice(deal)
             3 -> renderAmount(deal)
@@ -36,26 +36,26 @@ class DealTableDataAdapter(
         val textView = TextView(context)
         if (deal.side == Server.Deal.Side.SELL) {
             textView.setTextColor(resources.getColor(R.color.pink_bright))
-        } else textView.setTextColor(resources.getColor(R.color.green_bright))
+        } else {
+            textView.setTextColor(resources.getColor(R.color.green_bright))
+        }
+
         textView.setPadding(20, 10, 20, 10)
-        textView.textSize = 14F
+        textView.textSize = 14F //TODO в константы
         textView.text = String.format(price.toString())
         textView.gravity = Gravity.CENTER
         return textView
     }
 
     private fun renderAmount(deal: Server.Deal): View {
-        val price = deal.price.toBigDecimal().setScale(0, RoundingMode.HALF_DOWN)
-        val textView = TextView(context)
-        textView.setPadding(20, 10, 20, 10)
-        textView.textSize = 14F
-        textView.text = String.format(price.toString())
-        textView.gravity = Gravity.CENTER
+        val amount = deal.amount.toBigDecimal().setScale(0, RoundingMode.HALF_DOWN) //Formatter util class (object)
+        val textView = CellTextView(context)
+       textView.text = String.format(amount.toString())
         return textView
     }
 
     private fun renderSide(deal: Server.Deal): View { //временно, проверить формат
-        return renderString(deal.side.toString())
+        return renderString(deal.side.name)
     }
 
     private fun renderString (text: String): TextView {

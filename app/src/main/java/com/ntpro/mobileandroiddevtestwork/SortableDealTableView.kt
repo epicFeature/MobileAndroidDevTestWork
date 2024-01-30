@@ -37,6 +37,18 @@ class SortableDealTableView(context: Context, attributeSet: AttributeSet?) : Sor
         headerSortStateViewProvider = SortStateViewProviders.brightArrows()
 
         val tableColumnWeightModel = TableColumnWeightModel(5)
+//        for (i in 0..tableColumnWeightModel.columnCount) {
+//            val weight: Int
+//            val comparator: Comparator<Server.Deal>
+//            when(i) {
+//                COLUMN_DATE ->  {
+//                    weight =
+//                }
+//                COLUMN_INSTRUMENT -> 4
+//                else -> 2
+//
+//            }
+//        }
         tableColumnWeightModel.setColumnWeight(0, 3)
         tableColumnWeightModel.setColumnWeight(1, 4)
         tableColumnWeightModel.setColumnWeight(2, 2)
