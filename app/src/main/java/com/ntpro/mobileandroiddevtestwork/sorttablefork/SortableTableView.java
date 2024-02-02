@@ -44,10 +44,6 @@ public class SortableTableView<T> extends TableView<T> {
     private final SortableTableHeaderView sortableTableHeaderView;
     private final SortingController sortingController;
 
-
-    private boolean isThreadExecute = false;
-    private Handler handler = new Handler(Looper.getMainLooper());
-
     private Scheduler scheduler = new Scheduler();
 
 
