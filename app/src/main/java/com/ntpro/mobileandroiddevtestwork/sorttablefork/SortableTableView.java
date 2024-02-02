@@ -3,8 +3,6 @@ package com.ntpro.mobileandroiddevtestwork.sorttablefork;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -19,8 +17,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Extension of the {@link TableView} that gives the possibility to sort the table by every single
@@ -246,12 +242,10 @@ public class SortableTableView<T> extends TableView<T> {
 
         private Comparator<T> sortedColumnComparator;
 
-        private Runnable runnable;
-
         @Override
         public void onHeaderClicked(final int columnIndex) {
-            scheduler.scheduleCancel(runnable);
-            runnable = () -> {
+            scheduler.scheduleCancel();
+            Runnable runnable = () -> {
                 if (comparators.get(columnIndex) == null) {
                     Log.i(LOG_TAG, "Unable to sort column with index " + columnIndex + ". Reason: no comparator set for this column.");
                     return;

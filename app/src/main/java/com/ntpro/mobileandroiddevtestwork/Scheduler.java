@@ -10,10 +10,10 @@ public class Scheduler {
 
     public void schedule (Runnable runnable) {
         Log.d("schedule", "started");
-        handler.postDelayed(runnable, 3000);
+        handler.post(runnable);
     }
 
-    public void scheduleCancel (Runnable runnable) {
+    public void scheduleCancel () {
         Log.d("schedule", "canceled");
         handler.removeCallbacksAndMessages(null);
     }
