@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--sort tableview forked-->
+    <item name="table_data_view" type="id"/>
+    <item name="table_header_view" type="id"/>
+</resources>

@@ -33,10 +33,13 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.tableView.dataAdapter = dealTableDataAdapter
         Server().subscribeToDeals {
-            dealTableDataAdapter.data.addAll(it.sortedWith(
-                compareByDescending (
-                Server.Deal::timeStamp
-            )))
+            dealTableDataAdapter.data.addAll(
+                it.sortedWith(
+                    compareByDescending(
+                        Server.Deal::timeStamp
+                    )
+                )
+            )
             dealTableDataAdapter.notifyDataSetChanged()
         }
     }

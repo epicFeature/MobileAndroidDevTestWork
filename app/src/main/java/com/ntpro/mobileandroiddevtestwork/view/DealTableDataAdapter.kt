@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ntpro.mobileandroiddevtestwork.R
 import com.ntpro.mobileandroiddevtestwork.domain.Server
-import de.codecrafters.tableview.TableDataAdapter
+import com.ntpro.mobileandroiddevtestwork.sorttablefork.TableDataAdapter
 import java.math.RoundingMode
 
 class DealTableDataAdapter(

@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">MobileAndroidDevTestWork</string>
+
+    <!--sort tableview forked-->
+    <string name="sortable_indicator_content_description">Sortable Indicator</string>
+    <string name="default_header">Header %1$d</string>
+    <string name="default_cell">Data [%1$d:%2$d]</string>
+
     <!-- table header names -->
     <string name="time_header_name">Дата</string>
     <string name="instrument_header_name">Инструмент</string>
